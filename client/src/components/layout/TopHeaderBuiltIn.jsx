@@ -51,10 +51,12 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, searchQuery,
       <div className="bg-white text-slate-900 px-6 py-3 flex items-center justify-between border-b border-slate-100">
         {/* Left Branding */}
         <div className="flex items-center space-x-4">
-          <div className="flex items-center space-x-2.5 cursor-pointer" onClick={() => setActiveTab('overview')}>
-            <div className="w-9 h-9 rounded-xl bg-[#2563eb] flex items-center justify-center font-extrabold text-white text-lg shadow-sm">
-              <ShieldAlert className="w-5 h-5 text-white" />
-            </div>
+          <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('overview')}>
+            <img 
+              src="/logo.png" 
+              alt="CloudDataGuard Logo" 
+              className="w-10 h-10 object-contain rounded-xl shadow-xs border border-slate-200" 
+            />
             <div className="flex flex-col">
               <span className="font-extrabold text-lg tracking-tight text-slate-900 flex items-center gap-1 font-sans">
                 CloudDataGuard

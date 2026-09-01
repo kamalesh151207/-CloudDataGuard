@@ -33,9 +33,11 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
       <div>
         <div className="flex items-center justify-between p-4 border-b border-slate-100">
           <div className="flex items-center space-x-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-xl bg-[#2563eb] flex items-center justify-center shadow-sm flex-shrink-0">
-              <ShieldAlert className="w-6 h-6 text-white" />
-            </div>
+            <img 
+              src="/logo.png" 
+              alt="CloudDataGuard Logo" 
+              className="w-10 h-10 object-contain rounded-xl shadow-xs border border-slate-200 flex-shrink-0" 
+            />
             {!collapsed && (
               <div className="flex flex-col truncate">
                 <span className="font-extrabold text-base tracking-tight text-slate-900">

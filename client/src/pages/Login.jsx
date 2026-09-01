@@ -49,10 +49,12 @@ export default function Login({ onLoginSuccess }) {
           <div className="absolute top-0 right-0 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl pointer-events-none" />
 
           <div className="space-y-4 relative z-10">
-            <div className="flex items-center space-x-2.5">
-              <div className="w-10 h-10 rounded-xl bg-[#2563eb] flex items-center justify-center shadow-md">
-                <ShieldAlert className="w-6 h-6 text-white" />
-              </div>
+            <div className="flex items-center space-x-3">
+              <img 
+                src="/logo.png" 
+                alt="CloudDataGuard Logo" 
+                className="w-11 h-11 object-contain rounded-xl shadow-sm border border-slate-700 bg-white/10 p-1" 
+              />
               <div>
                 <h2 className="font-extrabold text-xl tracking-tight text-white font-sans">
                   CloudDataGuard
