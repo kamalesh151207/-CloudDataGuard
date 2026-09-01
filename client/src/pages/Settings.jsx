@@ -13,7 +13,7 @@ import {
 import { useTheme } from '../context/ThemeContext';
 
 export default function Settings() {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [autoNormalize, setAutoNormalize] = useState(true);
   const [level1Exact, setLevel1Exact] = useState(true);
   const [level2Email, setLevel2Email] = useState(true);
@@ -40,31 +40,78 @@ export default function Settings() {
       {/* Visual Theme Section */}
       <div className="p-6 rounded-2xl bg-slate-900/60 border border-slate-800/80 backdrop-blur-xl shadow-xl space-y-4">
         <h3 className="text-sm font-bold text-slate-200 border-b border-slate-800 pb-3 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-cyan-400" /> Theme & Identity Settings
+          <Sparkles className="w-4 h-4 text-purple-400" /> Interface Theme Selector
         </h3>
 
-        <div className="flex items-center justify-between">
-          <div>
-            <p className="text-xs font-semibold text-slate-200">Interface Theme</p>
-            <p className="text-[11px] text-slate-400">Primary visual identity mode for SaaS dashboard</p>
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
+          {/* Cyber Amethyst Theme */}
+          <div
+            onClick={() => setTheme('cyber')}
+            className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
+              theme === 'cyber'
+                ? 'border-purple-500 bg-purple-950/20 shadow-glow-cyan'
+                : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Sparkles className="w-3.5 h-3.5 text-purple-400" /> Cyber Amethyst
+              </span>
+              {theme === 'cyber' && <Check className="w-4 h-4 text-purple-400" />}
+            </div>
+            <div className="h-10 rounded-xl bg-gradient-to-r from-[#060913] via-[#0b0f24] to-[#161233] p-2 flex items-center gap-1.5 border border-purple-500/30">
+              <span className="w-3 h-3 rounded-full bg-purple-500" />
+              <span className="w-3 h-3 rounded-full bg-cyan-400" />
+              <span className="w-3 h-3 rounded-full bg-emerald-400" />
+            </div>
+            <p className="text-[11px] text-slate-400">Futuristic electric violet & neon cyan obsidian design.</p>
           </div>
 
-          <button
-            onClick={toggleTheme}
-            className="flex items-center space-x-2 px-4 py-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-200 font-semibold text-xs transition border border-slate-700"
+          {/* Deep Navy Slate Theme */}
+          <div
+            onClick={() => setTheme('navy')}
+            className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
+              theme === 'navy'
+                ? 'border-cyan-500 bg-cyan-950/20 shadow-glow-emerald'
+                : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'
+            }`}
           >
-            {theme === 'dark' ? (
-              <>
-                <Sun className="w-4 h-4 text-amber-400" />
-                <span>Switch to Light Theme</span>
-              </>
-            ) : (
-              <>
-                <Moon className="w-4 h-4 text-cyan-400" />
-                <span>Switch to Dark Theme</span>
-              </>
-            )}
-          </button>
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Moon className="w-3.5 h-3.5 text-cyan-400" /> Deep Obsidian
+              </span>
+              {theme === 'navy' && <Check className="w-4 h-4 text-cyan-400" />}
+            </div>
+            <div className="h-10 rounded-xl bg-gradient-to-r from-[#090d16] via-[#0b1120] to-[#0f172a] p-2 flex items-center gap-1.5 border border-cyan-500/30">
+              <span className="w-3 h-3 rounded-full bg-sky-500" />
+              <span className="w-3 h-3 rounded-full bg-emerald-500" />
+              <span className="w-3 h-3 rounded-full bg-rose-500" />
+            </div>
+            <p className="text-[11px] text-slate-400">Classic enterprise deep navy dark mode.</p>
+          </div>
+
+          {/* Nordic Light Theme */}
+          <div
+            onClick={() => setTheme('light')}
+            className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
+              theme === 'light'
+                ? 'border-indigo-500 bg-indigo-50/10 shadow-sm'
+                : 'border-slate-800 bg-slate-900/40 hover:border-slate-700'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-white flex items-center gap-1.5">
+                <Sun className="w-3.5 h-3.5 text-amber-400" /> Nordic Light
+              </span>
+              {theme === 'light' && <Check className="w-4 h-4 text-indigo-400" />}
+            </div>
+            <div className="h-10 rounded-xl bg-gradient-to-r from-slate-100 via-white to-slate-200 p-2 flex items-center gap-1.5 border border-slate-300">
+              <span className="w-3 h-3 rounded-full bg-indigo-600" />
+              <span className="w-3 h-3 rounded-full bg-teal-600" />
+              <span className="w-3 h-3 rounded-full bg-amber-500" />
+            </div>
+            <p className="text-[11px] text-slate-400">Clean, crisp high-contrast light SaaS theme.</p>
+          </div>
         </div>
       </div>
 

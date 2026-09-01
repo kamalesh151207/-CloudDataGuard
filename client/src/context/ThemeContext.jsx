@@ -5,23 +5,30 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('cloud_dataguard_theme');
-    return saved || 'dark';
+    return saved || 'cyber';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    if (theme === 'dark') {
-      root.classList.add('dark');
-      root.classList.remove('light');
+    root.classList.remove('theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
+
+    if (theme === 'cyber') {
+      root.classList.add('theme-cyber', 'dark');
+    } else if (theme === 'navy') {
+      root.classList.add('theme-navy', 'dark');
     } else {
-      root.classList.add('light');
-      root.classList.remove('dark');
+      root.classList.add('theme-light', 'light');
     }
+
     localStorage.setItem('cloud_dataguard_theme', theme);
   }, [theme]);
 
   const toggleTheme = () => {
-    setTheme(prev => (prev === 'dark' ? 'light' : 'dark'));
+    setTheme(prev => {
+      if (prev === 'cyber') return 'navy';
+      if (prev === 'navy') return 'light';
+      return 'cyber';
+    });
   };
 
   return (

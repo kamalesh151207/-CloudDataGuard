@@ -2,44 +2,87 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Theme 1: Cyber Amethyst (Electric Violet & Neon Cyan Dark) - Default */
+.theme-cyber {
+  --bg-primary: #060913;
+  --bg-secondary: #0b0f24;
+  --bg-card: rgba(14, 19, 44, 0.7);
+  --border-color: rgba(139, 92, 246, 0.2);
+  --text-main: #f8fafc;
+  --text-muted: #94a3b8;
+  --accent-primary: #8b5cf6; /* Violet */
+  --accent-secondary: #06b6d4; /* Cyan */
+}
+
+/* Theme 2: Deep Navy Slate */
+.theme-navy {
+  --bg-primary: #090d16;
+  --bg-secondary: #0b1120;
+  --bg-card: rgba(15, 23, 42, 0.7);
+  --border-color: rgba(30, 41, 59, 0.8);
+  --text-main: #f1f5f9;
+  --text-muted: #94a3b8;
+  --accent-primary: #0284c7; /* Sky */
+  --accent-secondary: #10b981; /* Emerald */
+}
+
+/* Theme 3: Nordic Light */
+.theme-light {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: rgba(255, 255, 255, 0.9);
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent-primary: #6366f1;
+  --accent-secondary: #0d9488;
+}
+
 @layer base {
   body {
-    @apply bg-[#090d16] text-slate-100 dark:bg-[#090d16] dark:text-slate-100 transition-colors duration-200;
+    background-color: var(--bg-primary);
+    color: var(--text-main);
+    font-family: 'Plus Jakarta Sans', 'Inter', sans-serif;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 
-/* Custom sleek scrollbar for modern SaaS interface */
+/* Custom sleek scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
   height: 6px;
 }
 
 ::-webkit-scrollbar-track {
-  background: #090d16;
+  background: var(--bg-primary);
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #1e293b;
+  background: rgba(148, 163, 184, 0.2);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #334155;
+  background: rgba(148, 163, 184, 0.4);
 }
 
 /* Custom Glassmorphism styles */
 .glass-panel {
-  background: rgba(15, 23, 42, 0.65);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid var(--border-color);
 }
 
-.glass-panel-light {
-  background: rgba(255, 255, 255, 0.85);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  border: 1px solid rgba(226, 232, 240, 0.8);
+/* Cyber Glow Accents */
+.cyber-gradient-text {
+  background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #34d399 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cyber-card-glow {
+  box-shadow: 0 0 30px -10px rgba(139, 92, 246, 0.25);
 }
 
 /* Shimmer animation for loading skeletons */

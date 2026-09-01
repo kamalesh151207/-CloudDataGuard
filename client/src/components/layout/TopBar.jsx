@@ -8,7 +8,8 @@ import {
   ChevronDown, 
   CheckCircle2,
   AlertTriangle,
-  RefreshCw
+  RefreshCw,
+  Sparkles
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
 
@@ -44,7 +45,7 @@ const pageDescriptions = {
 };
 
 export default function TopBar({ activeTab, dbHealth, onRefreshHealth }) {
-  const { theme, toggleTheme } = useTheme();
+  const { theme, setTheme } = useTheme();
   const [showNotifications, setShowNotifications] = useState(false);
   const [showProfile, setShowProfile] = useState(false);
 
@@ -89,14 +90,47 @@ export default function TopBar({ activeTab, dbHealth, onRefreshHealth }) {
           )}
         </div>
 
-        {/* Theme Toggle Button */}
-        <button
-          onClick={toggleTheme}
-          className="p-2 rounded-xl text-slate-400 hover:text-slate-200 hover:bg-slate-800/60 border border-slate-800 transition"
-          title={`Switch to ${theme === 'dark' ? 'Light' : 'Dark'} mode`}
-        >
-          {theme === 'dark' ? <Sun className="w-4 h-4 text-amber-400" /> : <Moon className="w-4 h-4 text-slate-300" />}
-        </button>
+        {/* Multi-Theme Selector */}
+        <div className="flex items-center p-1 rounded-xl bg-slate-900/80 border border-slate-800 text-xs">
+          <button
+            onClick={() => setTheme('cyber')}
+            className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
+              theme === 'cyber'
+                ? 'bg-gradient-to-r from-purple-600 to-cyan-500 text-white shadow-glow-cyan'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            title="Cyber Amethyst Theme"
+          >
+            <Sparkles className="w-3 h-3 text-purple-300" />
+            <span className="hidden lg:inline">Cyber</span>
+          </button>
+
+          <button
+            onClick={() => setTheme('navy')}
+            className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
+              theme === 'navy'
+                ? 'bg-gradient-to-r from-cyan-600 to-emerald-500 text-white shadow-glow-emerald'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            title="Deep Navy Theme"
+          >
+            <Moon className="w-3 h-3 text-cyan-300" />
+            <span className="hidden lg:inline">Navy</span>
+          </button>
+
+          <button
+            onClick={() => setTheme('light')}
+            className={`px-2.5 py-1 rounded-lg font-bold transition flex items-center gap-1 ${
+              theme === 'light'
+                ? 'bg-slate-200 text-slate-900 shadow-sm'
+                : 'text-slate-400 hover:text-slate-200'
+            }`}
+            title="Nordic Light Theme"
+          >
+            <Sun className="w-3 h-3 text-amber-500" />
+            <span className="hidden lg:inline">Light</span>
+          </button>
+        </div>
 
         {/* Notifications Icon Dropdown */}
         <div className="relative">
