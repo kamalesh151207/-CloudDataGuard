@@ -20,6 +20,7 @@ import { useTheme } from '../../context/ThemeContext';
 import { useAuth } from '../../context/AuthContext';
 
 const menuItems = [
+  { id: 'landing', label: 'HOME LANDING', icon: Sparkles },
   { id: 'overview', label: 'OVERVIEW', icon: LayoutDashboard },
   { id: 'validation', label: 'DATA VALIDATION', icon: ShieldCheck },
   { id: 'records', label: 'RECORDS', icon: Database },

@@ -10,14 +10,16 @@ export const ThemeProvider = ({ children }) => {
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('theme-whiteblue', 'theme-aquasmart', 'theme-bluewhite', 'theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
+    root.classList.remove('theme-whiteblue', 'theme-aquasmart', 'theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
 
-    if (theme === 'whiteblue' || theme === 'aquasmart' || theme === 'bluewhite' || theme === 'builtin') {
-      root.classList.add('theme-whiteblue', 'light');
-    } else if (theme === 'cyberpunk') {
+    if (theme === 'cyberpunk') {
       root.classList.add('theme-cyberpunk', 'dark');
+    } else if (theme === 'aquasmart') {
+      root.classList.add('theme-aquasmart', 'light');
+    } else if (theme === 'builtin') {
+      root.classList.add('theme-builtin', 'light');
     } else {
-      root.classList.add('theme-light', 'light');
+      root.classList.add('theme-whiteblue', 'light');
     }
 
     localStorage.setItem('cloud_dataguard_theme', theme);

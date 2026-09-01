@@ -14,11 +14,12 @@ import ActivityLogs from './pages/ActivityLogs';
 import SystemHealth from './pages/SystemHealth';
 import Settings from './pages/Settings';
 import Login from './pages/Login';
+import LandingPage from './pages/LandingPage';
 
 import { healthApi } from './services/api';
 
 function MainLayout() {
-  const [activeTab, setActiveTab] = useState('overview');
+  const [activeTab, setActiveTab] = useState('landing');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [dbHealth, setDbHealth] = useState({ isConnected: true, isInMemory: false });
   const { theme } = useTheme();
@@ -37,6 +38,10 @@ function MainLayout() {
     const interval = setInterval(fetchHealthCheck, 20000);
     return () => clearInterval(interval);
   }, []);
+
+  if (activeTab === 'landing') {
+    return <LandingPage onNavigate={setActiveTab} />;
+  }
 
   const renderContent = () => {
     switch (activeTab) {
@@ -63,7 +68,7 @@ function MainLayout() {
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 flex flex-col transition-colors duration-300">
-      {/* Top 2-Tier BuiltIn Style Header */}
+      {/* Top Header Navigation */}
       <TopHeaderBuiltIn
         activeTab={activeTab}
         setActiveTab={setActiveTab}

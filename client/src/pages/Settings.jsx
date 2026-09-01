@@ -5,7 +5,9 @@ import {
   Sun, 
   Check, 
   ShieldCheck, 
-  Sparkles
+  Sparkles,
+  Droplets,
+  Zap
 } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
 
@@ -27,7 +29,7 @@ export default function Settings() {
       {/* Header */}
       <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 shadow-sm">
         <h2 className="text-lg font-bold text-slate-900 dark:text-white flex items-center gap-2">
-          <SettingsIcon className="w-5 h-5 text-indigo-600 dark:text-cyan-400" /> Engine & Workspace Configuration
+          <SettingsIcon className="w-5 h-5 text-[#2563eb]" /> Engine & Workspace Configuration
         </h2>
         <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
           Customize deduplication engine rules, normalization parameters, and visual theme preferences.
@@ -37,77 +39,100 @@ export default function Settings() {
       {/* Visual Theme Section */}
       <div className="p-6 rounded-2xl bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 shadow-sm space-y-4">
         <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 border-b border-slate-100 dark:border-slate-800 pb-3 flex items-center gap-2">
-          <Sparkles className="w-4 h-4 text-indigo-600 dark:text-purple-400" /> Interface Theme Selector
+          <Sparkles className="w-4 h-4 text-[#2563eb]" /> Interface Theme Selector
         </h3>
 
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 pt-2">
-          {/* Nordic Light Theme (Primary) */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 pt-2">
+          {/* Pristine White & Royal Blue (Default) */}
           <div
-            onClick={() => setTheme('light')}
+            onClick={() => setTheme('whiteblue')}
             className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
-              theme === 'light'
-                ? 'border-indigo-600 bg-indigo-50/60 shadow-md ring-2 ring-indigo-500/20'
-                : 'border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 hover:border-slate-300'
+              theme === 'whiteblue'
+                ? 'border-[#2563eb] bg-blue-50/80 shadow-sm ring-2 ring-blue-500/20'
+                : 'border-slate-200 dark:border-slate-800 bg-white hover:border-slate-300'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Sun className="w-3.5 h-3.5 text-amber-500" /> Nordic Light
+              <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <Sun className="w-3.5 h-3.5 text-[#2563eb]" /> White & Blue
               </span>
-              {theme === 'light' && <Check className="w-4 h-4 text-indigo-600" />}
+              {theme === 'whiteblue' && <Check className="w-4 h-4 text-[#2563eb]" />}
             </div>
-            <div className="h-10 rounded-xl bg-gradient-to-r from-slate-100 via-white to-slate-200 p-2 flex items-center gap-1.5 border border-slate-300">
-              <span className="w-3 h-3 rounded-full bg-indigo-600" />
-              <span className="w-3 h-3 rounded-full bg-teal-600" />
-              <span className="w-3 h-3 rounded-full bg-amber-500" />
+            <div className="h-10 rounded-xl bg-slate-50 p-2 flex items-center gap-1.5 border border-slate-200">
+              <span className="w-3.5 h-3.5 rounded-full bg-[#2563eb]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-white border border-slate-300" />
+              <span className="w-3.5 h-3.5 rounded-full bg-emerald-500" />
             </div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400">Pristine, attractive light SaaS design with high-contrast typography.</p>
+            <p className="text-[11px] text-slate-600">Clean white theme with royal blue interactive buttons.</p>
           </div>
 
-          {/* Cyber Amethyst Theme */}
+          {/* AquaSmart AI Emerald */}
           <div
-            onClick={() => setTheme('cyber')}
+            onClick={() => setTheme('aquasmart')}
             className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
-              theme === 'cyber'
-                ? 'border-purple-500 bg-purple-950/20 shadow-glow-cyan'
-                : 'border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 hover:border-slate-300'
+              theme === 'aquasmart'
+                ? 'border-[#16a34a] bg-[#f0fdf4] shadow-sm ring-2 ring-emerald-500/20'
+                : 'border-slate-200 dark:border-slate-800 bg-white hover:border-slate-300'
             }`}
           >
             <div className="flex items-center justify-between">
-              <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Sparkles className="w-3.5 h-3.5 text-purple-500" /> Cyber Amethyst
+              <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <Droplets className="w-3.5 h-3.5 text-[#16a34a]" /> AquaSmart AI
               </span>
-              {theme === 'cyber' && <Check className="w-4 h-4 text-purple-400" />}
+              {theme === 'aquasmart' && <Check className="w-4 h-4 text-[#16a34a]" />}
             </div>
-            <div className="h-10 rounded-xl bg-gradient-to-r from-[#060913] via-[#0b0f24] to-[#161233] p-2 flex items-center gap-1.5 border border-purple-500/30">
-              <span className="w-3 h-3 rounded-full bg-purple-500" />
-              <span className="w-3 h-3 rounded-full bg-cyan-400" />
-              <span className="w-3 h-3 rounded-full bg-emerald-400" />
+            <div className="h-10 rounded-xl bg-[#052e16] p-2 flex items-center gap-1.5 border border-emerald-500/30">
+              <span className="w-3.5 h-3.5 rounded-full bg-[#16a34a]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#059669]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#86efac]" />
             </div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400">Futuristic electric violet & neon cyan obsidian dark mode.</p>
+            <p className="text-[11px] text-slate-600">Emerald green precision AI water & data management layout.</p>
           </div>
 
-          {/* Deep Navy Slate Theme */}
+          {/* Cyberpunk Neon Synthwave */}
           <div
-            onClick={() => setTheme('navy')}
+            onClick={() => setTheme('cyberpunk')}
             className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
-              theme === 'navy'
-                ? 'border-cyan-500 bg-cyan-950/20 shadow-glow-emerald'
-                : 'border-slate-200 dark:border-slate-800 bg-slate-50/50 dark:bg-slate-900/40 hover:border-slate-300'
+              theme === 'cyberpunk'
+                ? 'border-[#ff007f] bg-[#0c031f] shadow-[0_0_15px_rgba(255,0,128,0.3)]'
+                : 'border-slate-200 dark:border-slate-800 bg-white hover:border-slate-300'
             }`}
           >
             <div className="flex items-center justify-between">
               <span className="text-xs font-bold text-slate-900 dark:text-white flex items-center gap-1.5">
-                <Moon className="w-3.5 h-3.5 text-cyan-500" /> Deep Obsidian
+                <Zap className="w-3.5 h-3.5 text-[#ff007f]" /> Cyberpunk
               </span>
-              {theme === 'navy' && <Check className="w-4 h-4 text-cyan-400" />}
+              {theme === 'cyberpunk' && <Check className="w-4 h-4 text-[#ff007f]" />}
             </div>
-            <div className="h-10 rounded-xl bg-gradient-to-r from-[#090d16] via-[#0b1120] to-[#0f172a] p-2 flex items-center gap-1.5 border border-cyan-500/30">
-              <span className="w-3 h-3 rounded-full bg-sky-500" />
-              <span className="w-3 h-3 rounded-full bg-emerald-500" />
-              <span className="w-3 h-3 rounded-full bg-rose-500" />
+            <div className="h-10 rounded-xl bg-[#030008] p-2 flex items-center gap-1.5 border border-pink-500/40">
+              <span className="w-3.5 h-3.5 rounded-full bg-[#ff007f]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#00f0ff]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#b5179e]" />
             </div>
-            <p className="text-[11px] text-slate-600 dark:text-slate-400">Classic enterprise deep navy dark mode.</p>
+            <p className="text-[11px] text-slate-600 dark:text-slate-400">Futuristic neon magenta & electric cyan dark mode.</p>
+          </div>
+
+          {/* BuiltIn Tech Hub */}
+          <div
+            onClick={() => setTheme('builtin')}
+            className={`p-4 rounded-2xl border-2 transition cursor-pointer space-y-3 ${
+              theme === 'builtin'
+                ? 'border-[#0088cc] bg-cyan-50/80 shadow-sm'
+                : 'border-slate-200 dark:border-slate-800 bg-white hover:border-slate-300'
+            }`}
+          >
+            <div className="flex items-center justify-between">
+              <span className="text-xs font-bold text-slate-900 flex items-center gap-1.5">
+                <ShieldCheck className="w-3.5 h-3.5 text-[#0088cc]" /> BuiltIn Hub
+              </span>
+              {theme === 'builtin' && <Check className="w-4 h-4 text-[#0088cc]" />}
+            </div>
+            <div className="h-10 rounded-xl bg-[#071330] p-2 flex items-center gap-1.5 border border-cyan-400/30">
+              <span className="w-3.5 h-3.5 rounded-full bg-[#0088cc]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-[#00c2ff]" />
+              <span className="w-3.5 h-3.5 rounded-full bg-white" />
+            </div>
+            <p className="text-[11px] text-slate-600">Ocean blue & cyan tech hub layout.</p>
           </div>
         </div>
       </div>
@@ -129,7 +154,7 @@ export default function Settings() {
               type="checkbox"
               checked={autoNormalize}
               onChange={(e) => setAutoNormalize(e.target.checked)}
-              className="w-4 h-4 accent-indigo-600 rounded cursor-pointer"
+              className="w-4 h-4 accent-[#2563eb] rounded cursor-pointer"
             />
           </div>
 
@@ -143,7 +168,7 @@ export default function Settings() {
               type="checkbox"
               checked={level1Exact}
               onChange={(e) => setLevel1Exact(e.target.checked)}
-              className="w-4 h-4 accent-indigo-600 rounded cursor-pointer"
+              className="w-4 h-4 accent-[#2563eb] rounded cursor-pointer"
             />
           </div>
 
@@ -157,7 +182,7 @@ export default function Settings() {
               type="checkbox"
               checked={level2Email}
               onChange={(e) => setLevel2Email(e.target.checked)}
-              className="w-4 h-4 accent-indigo-600 rounded cursor-pointer"
+              className="w-4 h-4 accent-[#2563eb] rounded cursor-pointer"
             />
           </div>
 
@@ -171,7 +196,7 @@ export default function Settings() {
               type="checkbox"
               checked={level3Phone}
               onChange={(e) => setLevel3Phone(e.target.checked)}
-              className="w-4 h-4 accent-indigo-600 rounded cursor-pointer"
+              className="w-4 h-4 accent-[#2563eb] rounded cursor-pointer"
             />
           </div>
         </div>
@@ -185,7 +210,7 @@ export default function Settings() {
         <div className="pt-2">
           <button
             onClick={handleSaveSettings}
-            className="w-full py-3 rounded-xl bg-indigo-600 hover:bg-indigo-500 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center space-x-2"
+            className="w-full py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-extrabold text-xs shadow-md transition flex items-center justify-center space-x-2"
           >
             <Check className="w-4 h-4" />
             <span>Save Configuration</span>
