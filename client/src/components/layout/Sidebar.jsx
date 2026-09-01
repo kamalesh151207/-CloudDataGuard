@@ -9,7 +9,7 @@ import {
   Settings, 
   ChevronLeft,
   ChevronRight,
-  Droplets
+  ShieldAlert
 } from 'lucide-react';
 
 const menuItems = [
@@ -33,16 +33,16 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
       <div>
         <div className="flex items-center justify-between p-4 border-b border-slate-100">
           <div className="flex items-center space-x-3 overflow-hidden">
-            <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#16a34a] to-[#059669] flex items-center justify-center shadow-sm flex-shrink-0">
-              <Droplets className="w-6 h-6 text-white" />
+            <div className="w-10 h-10 rounded-xl bg-[#2563eb] flex items-center justify-center shadow-sm flex-shrink-0">
+              <ShieldAlert className="w-6 h-6 text-white" />
             </div>
             {!collapsed && (
               <div className="flex flex-col truncate">
                 <span className="font-extrabold text-base tracking-tight text-slate-900">
-                  AquaDataGuard
+                  CloudDataGuard
                 </span>
-                <span className="text-[10px] text-[#16a34a] font-bold tracking-wider uppercase">
-                  AquaSmart AI Engine
+                <span className="text-[10px] text-[#2563eb] font-bold tracking-wider uppercase">
+                  Deduplication Engine
                 </span>
               </div>
             )}
@@ -68,19 +68,19 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
                 onClick={() => setActiveTab(item.id)}
                 className={`w-full flex items-center space-x-3 px-3.5 py-2.5 rounded-xl text-sm font-semibold transition-all duration-150 group ${
                   isActive
-                    ? 'bg-[#f0fdf4] text-[#15803d] border border-[#bbf7d0] font-bold shadow-xs'
-                    : 'text-slate-600 hover:text-[#15803d] hover:bg-slate-50'
+                    ? 'bg-blue-50 text-[#2563eb] border border-blue-200 font-bold shadow-xs'
+                    : 'text-slate-600 hover:text-slate-900 hover:bg-slate-50'
                 }`}
                 title={collapsed ? item.label : undefined}
               >
                 <Icon
                   className={`w-5 h-5 flex-shrink-0 transition-colors ${
-                    isActive ? 'text-[#16a34a]' : 'text-slate-400 group-hover:text-[#16a34a]'
+                    isActive ? 'text-[#2563eb]' : 'text-slate-400 group-hover:text-slate-700'
                   }`}
                 />
                 {!collapsed && <span className="truncate">{item.label}</span>}
                 {!collapsed && isActive && (
-                  <span className="ml-auto w-2 h-2 rounded-full bg-[#16a34a]" />
+                  <span className="ml-auto w-2 h-2 rounded-full bg-[#2563eb]" />
                 )}
               </button>
             );
@@ -89,16 +89,16 @@ export default function Sidebar({ activeTab, setActiveTab, collapsed, setCollaps
       </div>
 
       {/* Bottom Footer Branding */}
-      <div className="p-4 border-t border-slate-100 bg-[#f9fafb]">
+      <div className="p-4 border-t border-slate-100 bg-[#f8fafc]">
         {!collapsed ? (
           <div className="flex flex-col space-y-1">
-            <span className="text-xs font-bold text-slate-900 tracking-wide">AquaSmart Data Guard</span>
-            <span className="text-[11px] text-slate-500 font-medium">Precision AI Water Management</span>
-            <span className="text-[10px] text-[#16a34a] font-mono font-bold mt-1">v1.0.0 • CodeAlpha Task 1</span>
+            <span className="text-xs font-bold text-slate-900 tracking-wide">CloudDataGuard</span>
+            <span className="text-[11px] text-slate-500 font-medium">Enterprise Cloud Engine</span>
+            <span className="text-[10px] text-[#2563eb] font-mono font-bold mt-1">v1.0.0 • CodeAlpha Task 1</span>
           </div>
         ) : (
-          <div className="flex justify-center" title="AquaSmart Data Guard Engine">
-            <span className="w-2.5 h-2.5 rounded-full bg-[#16a34a] animate-pulse" />
+          <div className="flex justify-center" title="CloudDataGuard Engine">
+            <span className="w-2.5 h-2.5 rounded-full bg-[#2563eb] animate-pulse" />
           </div>
         )}
       </div>

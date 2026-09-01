@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme: AquaSmart AI Green/Emerald (Default - Inspired by AquaSmart AI) */
+/* Theme: Minimalist Pristine White Canvas & Royal Blue Buttons (Default) */
+.theme-whiteblue {
+  --bg-primary: #f8fafc;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --accent-primary: #2563eb; /* Royal Blue */
+  --accent-secondary: #1d4ed8;
+}
 .theme-aquasmart {
   --bg-primary: #f9fafb;
   --bg-secondary: #052e16;
