@@ -100,18 +100,18 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 0, 128, 0.3);
+  background: #cbd5e1;
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(0, 240, 255, 0.5);
+  background: #2563eb;
 }
 
-/* Cyberpunk Neon Glow Effects */
-.neon-border-magenta {
-  border: 1px solid rgba(255, 0, 128, 0.4);
-  box-shadow: 0 0 15px rgba(255, 0, 128, 0.25);
+/* Neon Glow Effects */
+.neon-border-blue {
+  border: 1px solid rgba(37, 99, 235, 0.4);
+  box-shadow: 0 0 15px rgba(37, 99, 235, 0.25);
 }
 
 .neon-border-cyan {

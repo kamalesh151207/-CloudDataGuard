@@ -21,6 +21,7 @@ import { healthApi } from './services/api';
 function MainLayout() {
   const [activeTab, setActiveTab] = useState('landing');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [dbHealth, setDbHealth] = useState({ isConnected: true, isInMemory: false });
   const { theme } = useTheme();
 
@@ -50,7 +51,7 @@ function MainLayout() {
       case 'validation':
         return <DataValidation onRecordSaved={() => fetchHealthCheck()} />;
       case 'records':
-        return <Records />;
+        return <Records initialSearch={searchQuery} />;
       case 'analytics':
         return <Analytics />;
       case 'logs':
@@ -72,6 +73,8 @@ function MainLayout() {
       <TopHeaderBuiltIn
         activeTab={activeTab}
         setActiveTab={setActiveTab}
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
         dbHealth={dbHealth}
         onRefreshHealth={fetchHealthCheck}
       />

@@ -12,14 +12,20 @@ import { recordApi } from '../services/api';
 import StatusBadge from '../components/ui/StatusBadge';
 import RecordDrawer from '../components/ui/RecordDrawer';
 
-export default function Records() {
+export default function Records({ initialSearch = '' }) {
   const [records, setRecords] = useState([]);
   const [pagination, setPagination] = useState({ currentPage: 1, totalPages: 1, totalRecords: 0 });
   const [loading, setLoading] = useState(true);
-  const [search, setSearch] = useState('');
+  const [search, setSearch] = useState(initialSearch);
   const [statusFilter, setStatusFilter] = useState('all');
   const [deptFilter, setDeptFilter] = useState('all');
   const [selectedRecordId, setSelectedRecordId] = useState(null);
+
+  useEffect(() => {
+    if (initialSearch !== undefined) {
+      setSearch(initialSearch);
+    }
+  }, [initialSearch]);
 
   const fetchRecords = async (page = 1) => {
     try {
