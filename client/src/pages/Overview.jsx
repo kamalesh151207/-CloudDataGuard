@@ -51,30 +51,30 @@ export default function Overview({ onNavigate }) {
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
       {/* Top Banner / Call to Action */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-slate-900 via-slate-900/90 to-cyan-950/40 border border-slate-800/80 shadow-2xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+      <div className="p-6 rounded-2xl bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border border-indigo-500/30 dark:border-slate-800/80 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
         <div>
-          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-cyan-400">
+          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-teal-300 dark:text-cyan-400">
             <Sparkles className="w-4 h-4" />
             <span>CodeAlpha Cloud Security Suite</span>
           </div>
           <h2 className="text-xl font-extrabold text-white mt-1">
             Data Quality & Redundancy Prevention Dashboard
           </h2>
-          <p className="text-xs text-slate-400 mt-1 max-w-xl">
+          <p className="text-xs text-indigo-100 dark:text-slate-400 mt-1 max-w-xl">
             Real-time validation engine preventing duplicate and false-positive records from entering cloud MongoDB Atlas.
           </p>
         </div>
 
         <button
           onClick={() => onNavigate('validation')}
-          className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-gradient-to-r from-cyan-500 to-emerald-500 hover:from-cyan-400 hover:to-emerald-400 text-slate-950 font-extrabold text-xs shadow-glow-cyan transition"
+          className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-white text-indigo-700 hover:bg-slate-100 font-extrabold text-xs shadow-md transition"
         >
           <span>Validate New Record</span>
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
 
-      {/* Dynamic KPI Section (Requirement 7) */}
+      {/* Dynamic KPI Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
         <MetricCard
           title="Total Stored Records"
@@ -120,7 +120,7 @@ export default function Overview({ onNavigate }) {
 
       {/* Middle Section: Quality Score Gauge + Distribution Chart */}
       <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
-        {/* Data Quality Score (Requirement 8) */}
+        {/* Data Quality Score */}
         <div className="lg:col-span-1">
           <QualityGauge 
             score={stats?.stats?.dataQualityScore ?? 100} 
@@ -128,18 +128,18 @@ export default function Overview({ onNavigate }) {
           />
         </div>
 
-        {/* Classification Distribution Chart (Requirement 9) */}
-        <div className="lg:col-span-2 p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl shadow-xl flex flex-col justify-between">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3 mb-4">
+        {/* Classification Distribution Chart */}
+        <div className="lg:col-span-2 p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm flex flex-col justify-between">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3 mb-4">
             <div>
-              <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-                <BarChart2 className="w-4 h-4 text-cyan-400" /> Record Classification Breakdown
+              <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+                <BarChart2 className="w-4 h-4 text-indigo-600 dark:text-cyan-400" /> Record Classification Breakdown
               </h3>
-              <p className="text-xs text-slate-400">Distribution of evaluated data points</p>
+              <p className="text-xs text-slate-500 dark:text-slate-400">Distribution of evaluated data points</p>
             </div>
             <button 
               onClick={fetchStats}
-              className="p-1.5 rounded-lg text-slate-400 hover:text-white hover:bg-slate-800 transition"
+              className="p-1.5 rounded-lg text-slate-400 hover:text-slate-700 dark:hover:text-white hover:bg-slate-100 dark:hover:bg-slate-800 transition"
               title="Refresh stats"
             >
               <RefreshCw className="w-4 h-4" />
@@ -164,30 +164,30 @@ export default function Overview({ onNavigate }) {
                     ))}
                   </Pie>
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
               <div className="flex justify-center space-x-6 text-xs mt-2">
                 <div className="flex items-center space-x-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-emerald-500" />
-                  <span className="text-slate-300">Verified ({stats?.stats?.uniqueRecords || 0})</span>
+                  <span className="text-slate-700 dark:text-slate-300 font-semibold">Verified ({stats?.stats?.uniqueRecords || 0})</span>
                 </div>
                 <div className="flex items-center space-x-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-rose-500" />
-                  <span className="text-slate-300">Redundant ({stats?.stats?.redundantAttempts || 0})</span>
+                  <span className="text-slate-700 dark:text-slate-300 font-semibold">Redundant ({stats?.stats?.redundantAttempts || 0})</span>
                 </div>
                 <div className="flex items-center space-x-1.5">
                   <span className="w-2.5 h-2.5 rounded-full bg-amber-500" />
-                  <span className="text-slate-300">Invalid ({stats?.stats?.invalidAttempts || 0})</span>
+                  <span className="text-slate-700 dark:text-slate-300 font-semibold">Invalid ({stats?.stats?.invalidAttempts || 0})</span>
                 </div>
               </div>
             </div>
           ) : (
-            <div className="h-56 flex flex-col items-center justify-center text-center p-6 border border-dashed border-slate-800 rounded-xl">
+            <div className="h-56 flex flex-col items-center justify-center text-center p-6 border border-dashed border-slate-200 dark:border-slate-800 rounded-xl">
               <Database className="w-10 h-10 text-slate-400 mb-2" />
-              <p className="text-xs font-semibold text-slate-300">No Validation Data Collected Yet</p>
-              <p className="text-[11px] text-slate-400 mt-1">Validate incoming records to populate real-time charts.</p>
+              <p className="text-xs font-semibold text-slate-700 dark:text-slate-300">No Validation Data Collected Yet</p>
+              <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-1">Validate incoming records to populate real-time charts.</p>
             </div>
           )}
         </div>

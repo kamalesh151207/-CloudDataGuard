@@ -5,33 +5,33 @@ export default function StatusBadge({ status = 'verified', showIcon = true, size
   const statusConfig = {
     verified: {
       label: 'Verified',
-      bg: 'bg-emerald-950/60 text-emerald-400 border-emerald-800/60 shadow-glow-emerald',
-      dot: 'bg-emerald-400',
+      bg: 'bg-emerald-50 text-emerald-700 border-emerald-200 dark:bg-emerald-950/60 dark:text-emerald-400 dark:border-emerald-800/60 shadow-sm',
+      dot: 'bg-emerald-500',
       icon: CheckCircle2,
     },
     redundant: {
       label: 'Redundant',
-      bg: 'bg-rose-950/60 text-rose-400 border-rose-800/60 shadow-glow-rose',
+      bg: 'bg-rose-50 text-rose-700 border-rose-200 dark:bg-rose-950/60 dark:text-rose-400 dark:border-rose-800/60 shadow-sm',
       dot: 'bg-rose-500',
       icon: XCircle,
     },
     invalid: {
       label: 'Invalid',
-      bg: 'bg-amber-950/60 text-amber-400 border-amber-800/60 shadow-glow-amber',
-      dot: 'bg-amber-400',
+      bg: 'bg-amber-50 text-amber-800 border-amber-200 dark:bg-amber-950/60 dark:text-amber-400 dark:border-amber-800/60 shadow-sm',
+      dot: 'bg-amber-500',
       icon: AlertTriangle,
     },
     unique: {
       label: 'Unique & Verified',
-      bg: 'bg-cyan-950/60 text-cyan-400 border-cyan-800/60 shadow-glow-cyan',
-      dot: 'bg-cyan-400',
+      bg: 'bg-indigo-50 text-indigo-700 border-indigo-200 dark:bg-cyan-950/60 dark:text-cyan-400 dark:border-cyan-800/60 shadow-sm',
+      dot: 'bg-indigo-500 dark:bg-cyan-400',
       icon: CheckCircle2,
     }
   };
 
   const current = statusConfig[status?.toLowerCase()] || {
     label: status,
-    bg: 'bg-slate-800 text-slate-300 border-slate-700',
+    bg: 'bg-slate-100 text-slate-700 border-slate-200 dark:bg-slate-800 dark:text-slate-300 dark:border-slate-700',
     dot: 'bg-slate-400',
     icon: HelpCircle,
   };

@@ -61,27 +61,27 @@ export default function Analytics() {
     <div className="space-y-6 animate-in fade-in duration-300">
       {/* Top Stat Summary Header */}
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
-        <div className="p-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl">
-          <span className="text-xs text-slate-400 font-medium">Quality Score</span>
-          <h3 className="text-2xl font-extrabold text-cyan-400 mt-1 font-mono">{stats?.dataQualityScore ?? 100}%</h3>
+        <div className="p-4 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Quality Score</span>
+          <h3 className="text-2xl font-extrabold text-indigo-600 dark:text-cyan-400 mt-1 font-mono">{stats?.dataQualityScore ?? 100}%</h3>
           <span className="text-[10px] text-slate-400">Based on DB statistics</span>
         </div>
 
-        <div className="p-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl">
-          <span className="text-xs text-slate-400 font-medium">Success Rate</span>
-          <h3 className="text-2xl font-extrabold text-emerald-400 mt-1 font-mono">{stats?.validationSuccessRate ?? 100}%</h3>
+        <div className="p-4 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Success Rate</span>
+          <h3 className="text-2xl font-extrabold text-emerald-600 dark:text-emerald-400 mt-1 font-mono">{stats?.validationSuccessRate ?? 100}%</h3>
           <span className="text-[10px] text-slate-400">Accepted records</span>
         </div>
 
-        <div className="p-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl">
-          <span className="text-xs text-slate-400 font-medium">Redundancy %</span>
-          <h3 className="text-2xl font-extrabold text-rose-400 mt-1 font-mono">{stats?.redundancyPercentage ?? 0}%</h3>
+        <div className="p-4 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Redundancy %</span>
+          <h3 className="text-2xl font-extrabold text-rose-600 dark:text-rose-400 mt-1 font-mono">{stats?.redundancyPercentage ?? 0}%</h3>
           <span className="text-[10px] text-slate-400">Duplicate collisions</span>
         </div>
 
-        <div className="p-4 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl">
-          <span className="text-xs text-slate-400 font-medium">Total Evaluated</span>
-          <h3 className="text-2xl font-extrabold text-white mt-1 font-mono">{stats?.totalAttempts ?? 0}</h3>
+        <div className="p-4 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm">
+          <span className="text-xs text-slate-500 dark:text-slate-400 font-semibold">Total Evaluated</span>
+          <h3 className="text-2xl font-extrabold text-slate-900 dark:text-white mt-1 font-mono">{stats?.totalAttempts ?? 0}</h3>
           <span className="text-[10px] text-slate-400">Evaluated data points</span>
         </div>
       </div>
@@ -89,10 +89,10 @@ export default function Analytics() {
       {/* Grid of Visual Analytics Charts */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         {/* Chart 1: Classification Distribution */}
-        <div className="p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl shadow-xl space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-              <PieIcon className="w-4 h-4 text-cyan-400" /> Record Classification Breakdown
+        <div className="p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <PieIcon className="w-4 h-4 text-indigo-600 dark:text-cyan-400" /> Record Classification Breakdown
             </h3>
           </div>
 
@@ -114,7 +114,7 @@ export default function Analytics() {
                     ))}
                   </Pie>
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
                   />
                 </PieChart>
               </ResponsiveContainer>
@@ -127,10 +127,10 @@ export default function Analytics() {
         </div>
 
         {/* Chart 2: Verified Records by Department */}
-        <div className="p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl shadow-xl space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-              <Layers className="w-4 h-4 text-emerald-400" /> Unique Records by Department
+        <div className="p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <Layers className="w-4 h-4 text-emerald-600 dark:text-emerald-400" /> Unique Records by Department
             </h3>
           </div>
 
@@ -138,13 +138,13 @@ export default function Analytics() {
             {departmentData.length > 0 ? (
               <ResponsiveContainer width="100%" height="100%">
                 <BarChart data={departmentData}>
-                  <CartesianGrid strokeDasharray="3 3" stroke="#1e293b" />
-                  <XAxis dataKey="name" stroke="#94a3b8" fontSize={10} />
-                  <YAxis stroke="#94a3b8" fontSize={10} />
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e2e8f0" />
+                  <XAxis dataKey="name" stroke="#64748b" fontSize={10} />
+                  <YAxis stroke="#64748b" fontSize={10} />
                   <Tooltip
-                    contentStyle={{ backgroundColor: '#0f172a', borderColor: '#1e293b', borderRadius: '12px', color: '#fff' }}
+                    contentStyle={{ backgroundColor: '#ffffff', borderColor: '#e2e8f0', borderRadius: '12px', color: '#0f172a', boxShadow: '0 10px 15px -3px rgba(0,0,0,0.1)' }}
                   />
-                  <Bar dataKey="count" fill="#06b6d4" radius={[6, 6, 0, 0]} />
+                  <Bar dataKey="count" fill="#4f46e5" radius={[6, 6, 0, 0]} />
                 </BarChart>
               </ResponsiveContainer>
             ) : (
@@ -156,19 +156,19 @@ export default function Analytics() {
         </div>
 
         {/* Chart 3: Top Duplicate Causes */}
-        <div className="lg:col-span-2 p-6 bg-slate-900/60 border border-slate-800/80 rounded-2xl backdrop-blur-xl shadow-xl space-y-4">
-          <div className="flex items-center justify-between border-b border-slate-800 pb-3">
-            <h3 className="text-sm font-bold text-slate-200 flex items-center gap-2">
-              <ShieldAlert className="w-4 h-4 text-rose-400" /> Top Rejection Causes & Field Collisions
+        <div className="lg:col-span-2 p-6 bg-white dark:bg-slate-900/60 border border-slate-200 dark:border-slate-800/80 rounded-2xl shadow-sm space-y-4">
+          <div className="flex items-center justify-between border-b border-slate-100 dark:border-slate-800 pb-3">
+            <h3 className="text-sm font-bold text-slate-800 dark:text-slate-200 flex items-center gap-2">
+              <ShieldAlert className="w-4 h-4 text-rose-600 dark:text-rose-400" /> Top Rejection Causes & Field Collisions
             </h3>
           </div>
 
           {duplicateReasons.length > 0 ? (
             <div className="space-y-3">
               {duplicateReasons.map((item, idx) => (
-                <div key={idx} className="p-3 rounded-xl bg-slate-850 border border-slate-800 flex items-center justify-between">
-                  <span className="text-xs text-slate-300 font-medium">{item.reason}</span>
-                  <span className="px-2.5 py-1 rounded-full bg-rose-950 text-rose-400 text-xs font-mono font-bold border border-rose-800/60">
+                <div key={idx} className="p-3 rounded-xl bg-slate-50 dark:bg-slate-850 border border-slate-200 dark:border-slate-800 flex items-center justify-between">
+                  <span className="text-xs text-slate-800 dark:text-slate-300 font-semibold">{item.reason}</span>
+                  <span className="px-2.5 py-1 rounded-full bg-rose-50 dark:bg-rose-950 text-rose-700 dark:text-rose-400 text-xs font-mono font-bold border border-rose-200 dark:border-rose-800/60">
                     {item.count} occurrences
                   </span>
                 </div>

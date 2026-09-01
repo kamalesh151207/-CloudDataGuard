@@ -57,7 +57,7 @@ export default function App() {
 
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-[#090d16] text-slate-100 flex flex-col md:flex-row">
+      <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 flex flex-col md:flex-row transition-colors duration-300">
         {/* Responsive Left Sidebar */}
         <Sidebar
           activeTab={activeTab}
