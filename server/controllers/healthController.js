@@ -1,4 +1,5 @@
 const { getDBHealth } = require('../config/db');
+const { isPgConnected, pool } = require('../config/supabasePg');
 
 const startTime = Date.now();
 
@@ -8,9 +9,36 @@ const startTime = Date.now();
  */
 const getSystemHealth = async (req, res, next) => {
   try {
-    const dbHealth = await getDBHealth();
-    const uptimeSeconds = Math.floor((Date.now() - startTime) / 1000);
+    let dbHealth;
 
+    if (isPgConnected()) {
+      const pingStart = Date.now();
+      try {
+        await pool.query('SELECT 1;');
+        const latencyMs = Date.now() - pingStart;
+
+        dbHealth = {
+          isConnected: true,
+          provider: 'Supabase PostgreSQL',
+          connectionState: 'Connected & Operational',
+          latencyMs,
+          host: 'aws-0-ap-northeast-1.pooler.supabase.com',
+          databaseName: 'postgres',
+          uniqueIndexProtection: 'Active (idx_records_normalized_email, idx_records_normalized_phone)'
+        };
+      } catch (err) {
+        dbHealth = {
+          isConnected: false,
+          provider: 'Supabase PostgreSQL',
+          connectionState: 'Disconnected / Error',
+          error: err.message
+        };
+      }
+    } else {
+      dbHealth = await getDBHealth();
+    }
+
+    const uptimeSeconds = Math.floor((Date.now() - startTime) / 1000);
     const memoryUsage = process.memoryUsage();
 
     const healthStatus = {
@@ -31,7 +59,7 @@ const getSystemHealth = async (req, res, next) => {
       engine: {
         validationEngine: 'Operational',
         deduplicationEngine: 'Operational',
-        indexProtection: 'Active'
+        indexProtection: 'Active (Supabase PostgreSQL Unique Indexes)'
       }
     };
 

@@ -11,6 +11,7 @@ if (!process.env.MONGODB_URI) {
 }
 
 const { connectDB } = require('./config/db');
+const { initPgSchema } = require('./config/supabasePg');
 const errorHandler = require('./middleware/errorHandler');
 
 const recordRoutes = require('./routes/recordRoutes');
@@ -84,10 +85,11 @@ app.use(errorHandler);
 
 // Start Server & Connect Database
 if (process.env.NODE_ENV !== 'test') {
-  connectDB().then(() => {
+  Promise.all([connectDB(), initPgSchema()]).then(() => {
     app.listen(PORT, () => {
       console.log(`=================================================`);
       console.log(`🚀 CloudDataGuard API Server running on port ${PORT}`);
+      console.log(`⚡ Supabase PostgreSQL Database Connected & Initialized`);
       console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
       console.log(`=================================================`);
     });

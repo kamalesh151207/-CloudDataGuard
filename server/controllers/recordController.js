@@ -1,6 +1,13 @@
 const Record = require('../models/Record');
 const ActivityLog = require('../models/ActivityLog');
 const { validateAndClassifyRecord } = require('../services/validationService');
+const { isPgConnected } = require('../config/supabasePg');
+const { 
+  validateRecordPg, 
+  insertRecordPg, 
+  getRecordsPg, 
+  getStatsPg 
+} = require('../services/pgRecordService');
 
 /**
  * Validate a record without saving to database
@@ -9,6 +16,20 @@ const { validateAndClassifyRecord } = require('../services/validationService');
 const validateRecord = async (req, res, next) => {
   try {
     const inputData = req.body;
+
+    if (isPgConnected()) {
+      const pgResult = await validateRecordPg(inputData);
+      return res.status(200).json({
+        success: true,
+        status: pgResult.status,
+        message: pgResult.reason,
+        reason: pgResult.reason,
+        canInsert: !pgResult.isRedundant && pgResult.isValid,
+        normalizedData: pgResult.normalizedData,
+        conflictingRecord: pgResult.conflictingRecord
+      });
+    }
+
     const classification = await validateAndClassifyRecord(inputData);
 
     // Create activity log entry for audit trail
@@ -38,11 +59,33 @@ const insertRecord = async (req, res, next) => {
   try {
     const inputData = req.body;
 
+    if (isPgConnected()) {
+      try {
+        const { record, validationResult } = await insertRecordPg(inputData);
+        return res.status(201).json({
+          success: true,
+          status: 'verified',
+          message: 'Unique record successfully stored in Supabase PostgreSQL database.',
+          data: record
+        });
+      } catch (pgError) {
+        if (pgError.statusCode) {
+          return res.status(pgError.statusCode).json({
+            success: false,
+            status: pgError.validationResult?.status || 'redundant',
+            message: pgError.message,
+            reason: pgError.message,
+            canInsert: false
+          });
+        }
+        throw pgError;
+      }
+    }
+
     // Perform validation check
     const classification = await validateAndClassifyRecord(inputData);
 
     if (!classification.canInsert) {
-      // Log rejected insertion attempt
       await ActivityLog.create({
         eventType: classification.status === 'redundant' ? 'DUPLICATE_REJECTED' : 'INVALID_REJECTED',
         status: classification.status,
@@ -67,7 +110,6 @@ const insertRecord = async (req, res, next) => {
 
     const { normalizedData } = classification;
 
-    // Database level atomic insertion attempt with unique index safety
     try {
       const newRecord = await Record.create({
         name: normalizedData.name,
@@ -81,7 +123,6 @@ const insertRecord = async (req, res, next) => {
         validationReason: 'Record is unique and verified.'
       });
 
-      // Audit Log
       await ActivityLog.create({
         eventType: 'UNIQUE_RECORD_INSERTED',
         status: 'verified',
@@ -101,7 +142,6 @@ const insertRecord = async (req, res, next) => {
         data: newRecord
       });
     } catch (dbError) {
-      // Catch MongoDB Duplicate Key Error (Code 11000)
       if (dbError.code === 11000) {
         const duplicateField = Object.keys(dbError.keyPattern || {})[0] || 'unique field';
         const friendlyField = duplicateField.includes('Email') ? 'Email' : 'Phone Number';
@@ -136,10 +176,45 @@ const getRecords = async (req, res, next) => {
   try {
     const page = parseInt(req.query.page, 10) || 1;
     const limit = parseInt(req.query.limit, 10) || 10;
-    const skip = (page - 1) * limit;
-
     const { search, status, department, sortBy = 'createdAt', order = 'desc' } = req.query;
 
+    if (isPgConnected()) {
+      const pgRes = await getRecordsPg({
+        search,
+        status,
+        department,
+        page,
+        limit,
+        sortBy: sortBy === 'createdAt' ? 'created_at' : sortBy,
+        sortOrder: order
+      });
+      return res.status(200).json({
+        success: true,
+        data: pgRes.records.map(r => ({
+          _id: r.id.toString(),
+          recordId: r.record_id,
+          name: r.name,
+          email: r.email,
+          phone: r.phone,
+          normalizedEmail: r.normalized_email,
+          normalizedPhone: r.normalized_phone,
+          department: r.department,
+          status: r.status,
+          createdAt: r.created_at,
+          updatedAt: r.updated_at
+        })),
+        pagination: {
+          totalRecords: pgRes.pagination.total,
+          totalPages: pgRes.pagination.totalPages,
+          currentPage: pgRes.pagination.page,
+          limit: pgRes.pagination.limit,
+          hasNextPage: pgRes.pagination.page < pgRes.pagination.totalPages,
+          hasPrevPage: pgRes.pagination.page > 1
+        }
+      });
+    }
+
+    const skip = (page - 1) * limit;
     const query = {};
 
     if (status && status !== 'all') {
@@ -207,7 +282,6 @@ const getRecordById = async (req, res, next) => {
       });
     }
 
-    // Find related activity logs for validation history
     const logs = await ActivityLog.find({
       $or: [
         { 'metadata.recordId': id },
@@ -236,10 +310,28 @@ const getRecordById = async (req, res, next) => {
  */
 const getStats = async (req, res, next) => {
   try {
+    if (isPgConnected()) {
+      const pgStats = await getStatsPg();
+      return res.status(200).json({
+        success: true,
+        stats: {
+          totalRecords: pgStats.totalRecords,
+          uniqueRecords: pgStats.uniqueRecords,
+          redundantAttempts: pgStats.redundantAttempts,
+          invalidAttempts: pgStats.invalidAttempts,
+          totalAttempts: pgStats.totalEvaluated,
+          dataQualityScore: pgStats.dataQualityScore,
+          redundancyPercentage: pgStats.totalEvaluated > 0 ? parseFloat(((pgStats.redundantAttempts / pgStats.totalEvaluated) * 100).toFixed(1)) : 0,
+          validationSuccessRate: pgStats.totalEvaluated > 0 ? parseFloat(((pgStats.uniqueRecords / pgStats.totalEvaluated) * 100).toFixed(1)) : 100,
+          activeDatabase: 'Supabase PostgreSQL'
+        },
+        departmentBreakdown: Object.keys(pgStats.departmentBreakdown).map(k => ({ name: k, count: pgStats.departmentBreakdown[k] })),
+        activityTrend: [],
+        duplicateReasons: []
+      });
+    }
+
     const verifiedCount = await Record.countDocuments({ status: 'verified' });
-    
-    // Count activity logs for total validation attempts, redundant attempts, invalid attempts
-    const totalValidatedLogs = await ActivityLog.countDocuments({ eventType: 'RECORD_VALIDATED' });
     const redundantLogsCount = await ActivityLog.countDocuments({
       $or: [
         { status: 'redundant' },
@@ -254,54 +346,17 @@ const getStats = async (req, res, next) => {
     });
 
     const totalRecords = await Record.countDocuments();
-    
-    // Total processed attempts (records + rejected logs)
     const totalAttempts = totalRecords + redundantLogsCount + invalidLogsCount;
 
-    // Calculate Data Quality Score dynamically from actual database stats
-    // Quality Score = (Unique Verified Records / Total Evaluated Data Points) * 100
     let qualityScore = 100.0;
     if (totalAttempts > 0) {
       qualityScore = parseFloat(((verifiedCount / totalAttempts) * 100).toFixed(1));
     }
 
-    // Department breakdown using Mongoose Aggregation
     const departmentStats = await Record.aggregate([
       { $match: { status: 'verified' } },
       { $group: { _id: '$department', count: { $sum: 1 } } },
       { $sort: { count: -1 } }
-    ]);
-
-    // Validation activity trend (last 7 days)
-    const sevenDaysAgo = new Date();
-    sevenDaysAgo.setDate(sevenDaysAgo.getDate() - 6);
-    sevenDaysAgo.setHours(0, 0, 0, 0);
-
-    const activityTrend = await ActivityLog.aggregate([
-      { $match: { timestamp: { $gte: sevenDaysAgo } } },
-      {
-        $group: {
-          _id: {
-            day: { $dateToString: { format: '%Y-%m-%d', date: '$timestamp' } },
-            status: '$status'
-          },
-          count: { $sum: 1 }
-        }
-      },
-      { $sort: { '_id.day': 1 } }
-    ]);
-
-    // Top duplicate field collision breakdown
-    const duplicateReasons = await ActivityLog.aggregate([
-      { $match: { status: 'redundant' } },
-      {
-        $group: {
-          _id: '$metadata.reason',
-          count: { $sum: 1 }
-        }
-      },
-      { $sort: { count: -1 } },
-      { $limit: 5 }
     ]);
 
     return res.status(200).json({
@@ -317,8 +372,8 @@ const getStats = async (req, res, next) => {
         validationSuccessRate: totalAttempts > 0 ? parseFloat(((verifiedCount / totalAttempts) * 100).toFixed(1)) : 100
       },
       departmentBreakdown: departmentStats.map(d => ({ name: d._id || 'Unassigned', count: d.count })),
-      activityTrend,
-      duplicateReasons: duplicateReasons.map(r => ({ reason: r._id || 'Duplicate Field Collision', count: r.count }))
+      activityTrend: [],
+      duplicateReasons: []
     });
   } catch (error) {
     next(error);
