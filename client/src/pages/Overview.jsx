@@ -11,6 +11,7 @@ import {
 } from 'lucide-react';
 import MetricCard from '../components/ui/MetricCard';
 import QualityGauge from '../components/ui/QualityGauge';
+import HeroBuiltIn from '../components/layout/HeroBuiltIn';
 import { recordApi } from '../services/api';
 import { 
   PieChart, 
@@ -50,29 +51,8 @@ export default function Overview({ onNavigate }) {
 
   return (
     <div className="space-y-6 animate-in fade-in duration-300">
-      {/* Top Banner / Call to Action */}
-      <div className="p-6 rounded-2xl bg-gradient-to-r from-indigo-700 via-blue-700 to-indigo-800 text-white dark:from-slate-900 dark:via-slate-900/90 dark:to-cyan-950/40 border border-indigo-500/30 dark:border-slate-800/80 shadow-xl flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-        <div>
-          <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-wider text-teal-300 dark:text-cyan-400">
-            <Sparkles className="w-4 h-4" />
-            <span>CodeAlpha Cloud Security Suite</span>
-          </div>
-          <h2 className="text-xl font-extrabold text-white mt-1">
-            Data Quality & Redundancy Prevention Dashboard
-          </h2>
-          <p className="text-xs text-indigo-100 dark:text-slate-400 mt-1 max-w-xl">
-            Real-time validation engine preventing duplicate and false-positive records from entering cloud MongoDB Atlas.
-          </p>
-        </div>
-
-        <button
-          onClick={() => onNavigate('validation')}
-          className="flex items-center space-x-2 px-5 py-3 rounded-xl bg-white text-indigo-700 hover:bg-slate-100 font-extrabold text-xs shadow-md transition"
-        >
-          <span>Validate New Record</span>
-          <ArrowRight className="w-4 h-4" />
-        </button>
-      </div>
+      {/* BuiltIn Inspired Hero Section */}
+      <HeroBuiltIn onNavigate={onNavigate} stats={stats?.stats} />
 
       {/* Dynamic KPI Section */}
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">

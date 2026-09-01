@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { ThemeProvider } from './context/ThemeContext';
+import { ThemeProvider, useTheme } from './context/ThemeContext';
 import Sidebar from './components/layout/Sidebar';
 import TopBar from './components/layout/TopBar';
+import TopHeaderBuiltIn from './components/layout/TopHeaderBuiltIn';
 import MobileNav from './components/layout/MobileNav';
 
 import Overview from './pages/Overview';
@@ -14,10 +15,11 @@ import Settings from './pages/Settings';
 
 import { healthApi } from './services/api';
 
-export default function App() {
+function MainLayout() {
   const [activeTab, setActiveTab] = useState('overview');
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false);
   const [dbHealth, setDbHealth] = useState({ isConnected: true, isInMemory: false });
+  const { theme } = useTheme();
 
   const fetchHealthCheck = async () => {
     try {
@@ -56,8 +58,16 @@ export default function App() {
   };
 
   return (
-    <ThemeProvider>
-      <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 flex flex-col md:flex-row transition-colors duration-300">
+    <div className="min-h-screen bg-slate-50 text-slate-900 dark:bg-[#060913] dark:text-slate-100 flex flex-col transition-colors duration-300">
+      {/* Top 2-Tier BuiltIn Style Header */}
+      <TopHeaderBuiltIn
+        activeTab={activeTab}
+        setActiveTab={setActiveTab}
+        dbHealth={dbHealth}
+        onRefreshHealth={fetchHealthCheck}
+      />
+
+      <div className="flex-1 flex flex-col md:flex-row min-w-0 pb-20 md:pb-8">
         {/* Responsive Left Sidebar */}
         <Sidebar
           activeTab={activeTab}
@@ -66,24 +76,24 @@ export default function App() {
           setCollapsed={setSidebarCollapsed}
         />
 
-        {/* Main Content Workspace */}
-        <div className="flex-1 flex flex-col min-w-0 pb-20 md:pb-8">
-          {/* Top Bar Navigation */}
-          <TopBar
-            activeTab={activeTab}
-            dbHealth={dbHealth}
-            onRefreshHealth={fetchHealthCheck}
-          />
-
-          {/* Page Body Viewport */}
+        {/* Main Workspace Area */}
+        <div className="flex-1 flex flex-col min-w-0">
           <main className="p-4 sm:p-6 lg:p-8 max-w-7xl mx-auto w-full">
             {renderContent()}
           </main>
         </div>
-
-        {/* Bottom Navigation for Mobile Devices */}
-        <MobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
       </div>
+
+      {/* Bottom Navigation for Mobile Devices */}
+      <MobileNav activeTab={activeTab} setActiveTab={setActiveTab} />
+    </div>
+  );
+}
+
+export default function App() {
+  return (
+    <ThemeProvider>
+      <MainLayout />
     </ThemeProvider>
   );
 }

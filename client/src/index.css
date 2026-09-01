@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme 1: Cyber Amethyst (Electric Violet & Neon Cyan Dark) - Default */
+/* Theme 0: BuiltIn Tech Hub (Royal Blue & Cyan Gradient) - Primary Default */
+.theme-builtin {
+  --bg-primary: #f4f7fc;
+  --bg-secondary: #071330;
+  --bg-card: #ffffff;
+  --border-color: #e2e8f0;
+  --text-main: #0a192f;
+  --text-muted: #4a5568;
+  --accent-primary: #0088cc;
+  --accent-secondary: #00c2ff;
+}
 .theme-cyber {
   --bg-primary: #060913;
   --bg-secondary: #0b0f24;

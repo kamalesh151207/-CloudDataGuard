@@ -5,14 +5,16 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('cloud_dataguard_theme');
-    return saved || 'light';
+    return saved || 'builtin';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
+    root.classList.remove('theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
 
-    if (theme === 'cyber') {
+    if (theme === 'builtin') {
+      root.classList.add('theme-builtin', 'light');
+    } else if (theme === 'cyber') {
       root.classList.add('theme-cyber', 'dark');
     } else if (theme === 'navy') {
       root.classList.add('theme-navy', 'dark');
