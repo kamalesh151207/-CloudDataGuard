@@ -2,7 +2,19 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme 0: BuiltIn Tech Hub (Royal Blue & Cyan Gradient) - Primary Default */
+/* Theme: Vibrant Cyberpunk / Neon Synthwave (Default) */
+.theme-cyberpunk {
+  --bg-primary: #030008;
+  --bg-secondary: #0a0218;
+  --bg-card: rgba(14, 4, 30, 0.75);
+  --border-color: rgba(255, 0, 128, 0.3);
+  --text-main: #ffffff;
+  --text-muted: #a78bfa;
+  --accent-primary: #ff007f; /* Neon Pink/Magenta */
+  --accent-secondary: #00f0ff; /* Electric Cyan */
+}
+
+/* Theme: BuiltIn Ocean Tech Hub */
 .theme-builtin {
   --bg-primary: #f4f7fc;
   --bg-secondary: #071330;
@@ -13,18 +25,8 @@
   --accent-primary: #0088cc;
   --accent-secondary: #00c2ff;
 }
-.theme-cyber {
-  --bg-primary: #060913;
-  --bg-secondary: #0b0f24;
-  --bg-card: rgba(14, 19, 44, 0.7);
-  --border-color: rgba(139, 92, 246, 0.2);
-  --text-main: #f8fafc;
-  --text-muted: #94a3b8;
-  --accent-primary: #8b5cf6; /* Violet */
-  --accent-secondary: #06b6d4; /* Cyan */
-}
 
-/* Theme 2: Deep Navy Slate */
+/* Theme: Deep Navy Slate */
 .theme-navy {
   --bg-primary: #090d16;
   --bg-secondary: #0b1120;
@@ -32,11 +34,11 @@
   --border-color: rgba(30, 41, 59, 0.8);
   --text-main: #f1f5f9;
   --text-muted: #94a3b8;
-  --accent-primary: #0284c7; /* Sky */
-  --accent-secondary: #10b981; /* Emerald */
+  --accent-primary: #0284c7;
+  --accent-secondary: #10b981;
 }
 
-/* Theme 3: Nordic Light */
+/* Theme: Nordic Light */
 .theme-light {
   --bg-primary: #f8fafc;
   --bg-secondary: #ffffff;
@@ -68,12 +70,39 @@
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(148, 163, 184, 0.2);
+  background: rgba(255, 0, 128, 0.3);
   border-radius: 9999px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(148, 163, 184, 0.4);
+  background: rgba(0, 240, 255, 0.5);
+}
+
+/* Cyberpunk Neon Glow Effects */
+.neon-border-magenta {
+  border: 1px solid rgba(255, 0, 128, 0.4);
+  box-shadow: 0 0 15px rgba(255, 0, 128, 0.25);
+}
+
+.neon-border-cyan {
+  border: 1px solid rgba(0, 240, 255, 0.4);
+  box-shadow: 0 0 15px rgba(0, 240, 255, 0.25);
+}
+
+.neon-gradient-text {
+  background: linear-gradient(135deg, #ff007f 0%, #00f0ff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.neon-cyan {
+  color: #00f0ff;
+  text-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
+
+.neon-pink {
+  color: #ff007f;
+  text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
 }
 
 /* Custom Glassmorphism styles */
@@ -82,17 +111,6 @@
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
   border: 1px solid var(--border-color);
-}
-
-/* Cyber Glow Accents */
-.cyber-gradient-text {
-  background: linear-gradient(135deg, #a78bfa 0%, #38bdf8 50%, #34d399 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-
-.cyber-card-glow {
-  box-shadow: 0 0 30px -10px rgba(139, 92, 246, 0.25);
 }
 
 /* Shimmer animation for loading skeletons */
@@ -106,7 +124,7 @@
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, rgba(30, 41, 59, 0.5) 25%, rgba(51, 65, 85, 0.5) 50%, rgba(30, 41, 59, 0.5) 75%);
+  background: linear-gradient(90deg, rgba(255, 0, 128, 0.1) 25%, rgba(0, 240, 255, 0.2) 50%, rgba(255, 0, 128, 0.1) 75%);
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
