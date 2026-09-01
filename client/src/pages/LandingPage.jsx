@@ -53,11 +53,13 @@ export default function LandingPage({ onNavigate }) {
       {/* Top Navigation Bar */}
       <nav className="w-full sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200 px-6 py-3.5 flex items-center justify-between">
         <div className="flex items-center space-x-3 cursor-pointer" onClick={() => onNavigate('overview')}>
-          <img 
-            src="/logo.png" 
-            alt="CloudDataGuard Logo" 
-            className="w-10 h-10 object-contain rounded-xl shadow-xs border border-slate-200" 
-          />
+          <div className="w-10 h-10 rounded-full p-0.5 border-2 border-blue-500 bg-white shadow-sm flex items-center justify-center overflow-hidden">
+            <img 
+              src="/logo.png" 
+              alt="CloudDataGuard Logo" 
+              className="w-full h-full object-cover rounded-full" 
+            />
+          </div>
           <div className="flex flex-col">
             <span className="font-extrabold text-lg tracking-tight text-slate-900 font-sans">
               CloudDataGuard

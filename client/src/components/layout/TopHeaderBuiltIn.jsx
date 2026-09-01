@@ -47,16 +47,18 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, searchQuery,
 
   return (
     <header className="w-full flex flex-col sticky top-0 z-40 bg-white border-b border-slate-200 shadow-xs">
-      {/* Tier 1: Clean White Header with Royal Blue Button & Functional Search */}
+      {/* Tier 1: Clean White Header with Round Framed Logo */}
       <div className="bg-white text-slate-900 px-6 py-3 flex items-center justify-between border-b border-slate-100">
-        {/* Left Branding */}
+        {/* Left Branding with Round Framed Logo */}
         <div className="flex items-center space-x-4">
           <div className="flex items-center space-x-3 cursor-pointer" onClick={() => setActiveTab('overview')}>
-            <img 
-              src="/logo.png" 
-              alt="CloudDataGuard Logo" 
-              className="w-10 h-10 object-contain rounded-xl shadow-xs border border-slate-200" 
-            />
+            <div className="w-10 h-10 rounded-full p-0.5 border-2 border-blue-500 bg-white shadow-sm flex items-center justify-center overflow-hidden">
+              <img 
+                src="/logo.png" 
+                alt="CloudDataGuard Logo" 
+                className="w-full h-full object-cover rounded-full" 
+              />
+            </div>
             <div className="flex flex-col">
               <span className="font-extrabold text-lg tracking-tight text-slate-900 flex items-center gap-1 font-sans">
                 CloudDataGuard
@@ -127,10 +129,10 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, searchQuery,
         </div>
       </div>
 
-      {/* Tier 2: Pure White Navigation Bar with High-Visibility Active Tab Highlights */}
+      {/* Tier 2: Pure White Navigation Bar with High-Visibility Active Tab Highlights & Clear Separation */}
       <div className="bg-white text-slate-800 px-6 py-2 flex items-center justify-between text-xs font-bold tracking-wide border-b border-slate-200">
-        {/* Horizontal Navigation Tabs with Active Highlights */}
-        <nav className="flex items-center space-x-2 overflow-x-auto py-1">
+        {/* Horizontal Navigation Tabs */}
+        <nav className="flex items-center space-x-2 overflow-x-auto py-1 pr-6 flex-1">
           {menuItems.map((item) => {
             const Icon = item.icon;
             const isActive = activeTab === item.id;
@@ -151,8 +153,8 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, searchQuery,
           })}
         </nav>
 
-        {/* Right Status & Location */}
-        <div className="hidden lg:flex items-center space-x-4">
+        {/* Right Status & Location with Clear Separation Divider */}
+        <div className="hidden lg:flex items-center space-x-6 flex-shrink-0 pl-6 border-l border-slate-200">
           <div 
             onClick={onRefreshHealth}
             className="flex items-center space-x-1.5 text-[#2563eb] font-bold cursor-pointer hover:underline text-xs"
