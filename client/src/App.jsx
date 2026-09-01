@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { ThemeProvider, useTheme } from './context/ThemeContext';
+import { AuthProvider } from './context/AuthContext';
 import Sidebar from './components/layout/Sidebar';
 import TopBar from './components/layout/TopBar';
 import TopHeaderBuiltIn from './components/layout/TopHeaderBuiltIn';
@@ -12,6 +13,7 @@ import Analytics from './pages/Analytics';
 import ActivityLogs from './pages/ActivityLogs';
 import SystemHealth from './pages/SystemHealth';
 import Settings from './pages/Settings';
+import Login from './pages/Login';
 
 import { healthApi } from './services/api';
 
@@ -52,6 +54,8 @@ function MainLayout() {
         return <SystemHealth onHealthFetched={(h) => setDbHealth(h)} />;
       case 'settings':
         return <Settings />;
+      case 'login':
+        return <Login onLoginSuccess={() => setActiveTab('overview')} />;
       default:
         return <Overview onNavigate={setActiveTab} />;
     }
@@ -92,8 +96,10 @@ function MainLayout() {
 
 export default function App() {
   return (
-    <ThemeProvider>
-      <MainLayout />
-    </ThemeProvider>
+    <AuthProvider>
+      <ThemeProvider>
+        <MainLayout />
+      </ThemeProvider>
+    </AuthProvider>
   );
 }

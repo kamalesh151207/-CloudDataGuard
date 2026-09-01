@@ -8,6 +8,20 @@ const api = axios.create({
   timeout: 10000,
 });
 
+export const authApi = {
+  // Login user payload
+  login: async (credentials) => {
+    const res = await api.post('/auth/login', credentials);
+    return res.data;
+  },
+
+  // Get current user profile
+  getMe: async () => {
+    const res = await api.get('/auth/me');
+    return res.data;
+  },
+};
+
 export const recordApi = {
   // Validate record payload without storing
   validateRecord: async (data) => {

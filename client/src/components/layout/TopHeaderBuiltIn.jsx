@@ -16,6 +16,7 @@ import {
   Settings
 } from 'lucide-react';
 import { useTheme } from '../../context/ThemeContext';
+import { useAuth } from '../../context/AuthContext';
 
 const menuItems = [
   { id: 'overview', label: 'OVERVIEW', icon: LayoutDashboard },
@@ -29,6 +30,7 @@ const menuItems = [
 
 export default function TopHeaderBuiltIn({ activeTab, setActiveTab, dbHealth, onRefreshHealth }) {
   const { theme, setTheme } = useTheme();
+  const { user, isAuthenticated, logout } = useAuth();
   const [searchQuery, setSearchQuery] = useState('');
   const isConnected = dbHealth?.isConnected ?? true;
 
@@ -75,11 +77,31 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, dbHealth, on
             For Enterprise
           </button>
 
-          {/* User Links */}
+          {/* User Links / Authentication State */}
           <div className="hidden sm:flex items-center space-x-2 text-xs font-bold tracking-wider uppercase text-cyan-100">
-            <span className="hover:text-white cursor-pointer" onClick={() => setActiveTab('settings')}>LOG IN</span>
-            <span>|</span>
-            <span className="hover:text-white cursor-pointer" onClick={() => setActiveTab('validation')}>JOIN</span>
+            {isAuthenticated ? (
+              <div className="flex items-center space-x-2">
+                <span className="text-emerald-300 font-extrabold normal-case flex items-center gap-1">
+                  <User className="w-3.5 h-3.5" /> {user?.name || 'Cloud Admin'}
+                </span>
+                <span>|</span>
+                <span 
+                  onClick={() => {
+                    logout();
+                    setActiveTab('overview');
+                  }} 
+                  className="hover:text-white cursor-pointer text-rose-300"
+                >
+                  LOG OUT
+                </span>
+              </div>
+            ) : (
+              <>
+                <span className="hover:text-white cursor-pointer" onClick={() => setActiveTab('login')}>LOG IN</span>
+                <span>|</span>
+                <span className="hover:text-white cursor-pointer" onClick={() => setActiveTab('login')}>JOIN</span>
+              </>
+            )}
           </div>
 
           {/* Theme Quick Toggle */}

@@ -16,6 +16,7 @@ const errorHandler = require('./middleware/errorHandler');
 const recordRoutes = require('./routes/recordRoutes');
 const activityRoutes = require('./routes/activityRoutes');
 const healthRoutes = require('./routes/healthRoutes');
+const authRoutes = require('./routes/authRoutes');
 
 const app = express();
 const PORT = process.env.PORT || 5001;
@@ -62,6 +63,7 @@ app.use(express.json({ limit: '1mb' }));
 app.use(express.urlencoded({ extended: true, limit: '1mb' }));
 
 // API Endpoints
+app.use('/api/auth', authRoutes);
 app.use('/api/records', recordRoutes);
 app.use('/api/activity', activityRoutes);
 app.use('/api/health', healthRoutes);
