@@ -45,7 +45,7 @@ export default function SystemHealth({ onHealthFetched }) {
             <HeartPulse className="w-5 h-5 text-emerald-600 dark:text-emerald-400" /> Cloud Infrastructure & System Health
           </h2>
           <p className="text-xs text-slate-500 dark:text-slate-400 mt-1">
-            Live diagnostic state of MongoDB Atlas, Express API worker thread memory, uptime, and validation engine status.
+            Live diagnostic state of Supabase PostgreSQL, Express API worker thread memory, uptime, and validation engine status.
           </p>
         </div>
 
@@ -85,7 +85,7 @@ export default function SystemHealth({ onHealthFetched }) {
             </h3>
           </div>
           <span className="text-[10px] text-slate-500 dark:text-slate-400 mt-1 block font-mono">
-            {health?.database?.isInMemory ? 'InMemory Engine (Fallback)' : 'MongoDB Atlas Cluster'}
+            Supabase PostgreSQL Cluster
           </span>
         </div>
 

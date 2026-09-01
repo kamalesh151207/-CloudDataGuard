@@ -152,7 +152,7 @@ export default function TopHeaderBuiltIn({ activeTab, setActiveTab, dbHealth, on
             }`}
           >
             <span className={`w-2 h-2 rounded-full ${isConnected ? 'bg-emerald-500 animate-pulse' : 'bg-rose-500'}`} />
-            <span>{isConnected ? 'MongoDB Connected' : 'Disconnected'}</span>
+            <span>{isConnected ? 'Supabase Connected' : 'Disconnected'}</span>
           </div>
         </div>
       </div>

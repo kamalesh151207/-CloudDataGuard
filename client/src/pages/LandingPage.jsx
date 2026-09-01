@@ -118,24 +118,8 @@ export default function LandingPage({ onNavigate }) {
             A production-quality cloud data redundancy removal system. Validates incoming record streams against existing records, classifies payloads, and enforces 0-redundancy database accuracy.
           </p>
 
-          {/* Real-time Counter Stats Bar */}
-          <div className="grid grid-cols-3 gap-4 pt-2 max-w-xl">
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-2xl font-extrabold text-[#2563eb] font-mono block">12.4K</span>
-              <span className="text-xs text-slate-500 font-medium">Stored Records</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-2xl font-extrabold text-emerald-600 font-mono block">99.8%</span>
-              <span className="text-xs text-slate-500 font-medium">Quality Score</span>
-            </div>
-            <div className="p-4 rounded-2xl bg-slate-50 border border-slate-200">
-              <span className="text-2xl font-extrabold text-indigo-600 font-mono block">0</span>
-              <span className="text-xs text-slate-500 font-medium">Redundant Blocked</span>
-            </div>
-          </div>
-
           {/* CTAs */}
-          <div className="flex flex-wrap items-center gap-4 pt-2">
+          <div className="flex flex-wrap items-center gap-4 pt-4">
             <button
               onClick={() => onNavigate('overview')}
               className="px-6 py-3.5 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-extrabold text-xs uppercase tracking-wider shadow-md transition flex items-center space-x-2"
