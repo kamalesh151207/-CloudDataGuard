@@ -6,50 +6,63 @@ import {
   Database, 
   FileText, 
   Zap, 
-  ChevronDown 
+  ChevronDown,
+  Droplets
 } from 'lucide-react';
 
 export default function HeroBuiltIn({ onNavigate, stats }) {
   return (
-    <div className="w-full bg-gradient-to-r from-[#0b2545] via-[#0052cc] to-[#0077e6] text-white py-12 px-6 sm:px-12 relative overflow-hidden shadow-lg rounded-2xl mb-8 border border-blue-400/20">
-      {/* Background Subtle Graphic Accents */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-blue-300/10 rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-white/10 rounded-full blur-2xl pointer-events-none" />
+    <div className="w-full bg-gradient-to-br from-[#052e16] via-[#14532d] to-[#047857] text-white py-12 px-6 sm:px-12 relative overflow-hidden shadow-xl rounded-3xl mb-8 border border-emerald-400/30">
+      {/* Background Radial Glow Effects */}
+      <div className="absolute top-0 right-0 w-96 h-96 bg-emerald-400/10 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute -bottom-10 -left-10 w-80 h-80 bg-green-500/20 rounded-full blur-2xl pointer-events-none" />
 
       <div className="max-w-6xl mx-auto space-y-8 relative z-10">
-        {/* Category Tagline */}
-        <div className="flex items-center space-x-2 text-xs font-bold uppercase tracking-widest text-blue-200">
-          <Sparkles className="w-4 h-4 text-blue-200" />
-          <span>TECH TRENDS, CLOUD DATA QUALITY + REDUNDANCY ENGINE</span>
+        {/* AquaSmart Hero Badge */}
+        <div className="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-[#f0fdf4]/10 border border-[#bbf7d0]/30 text-[#86efac] text-xs font-semibold backdrop-blur-md">
+          <Droplets className="w-4 h-4 text-[#86efac]" />
+          <span>AquaSmart AI Engine • Precision Cloud Data Management</span>
         </div>
 
         {/* Hero Title */}
         <div className="space-y-3">
-          <h1 className="text-3xl sm:text-5xl font-serif font-bold tracking-tight leading-tight text-white">
-            Validate<span className="text-emerald-300 font-sans">.</span> Deduplicate<span className="text-sky-300 font-sans">.</span><br />
-            Trust your data<span className="text-blue-200 font-sans">.</span>
+          <h1 className="text-3xl sm:text-5xl font-extrabold tracking-tight leading-tight text-white font-sans">
+            Automate irrigation logic<span className="text-[#86efac]">.</span><br />
+            Ensure 100<span className="text-[#4ade80]">%</span> clean cloud data<span className="text-[#86efac]">.</span>
           </h1>
 
-          {/* Key Metrics Banner */}
-          <div className="flex flex-wrap items-center gap-3 text-xs sm:text-sm font-bold tracking-wider uppercase text-blue-100/90 pt-1">
-            <span className="text-white font-mono">{stats?.totalRecords ?? '12.4K'} STORED RECORDS</span>
-            <span>•</span>
-            <span className="text-emerald-300 font-mono">{stats?.dataQualityScore ?? '99.8'}% QUALITY SCORE</span>
-            <span>•</span>
-            <span className="text-sky-200 font-mono">{stats?.redundantAttempts ?? '0'} REDUNDANT BLOCKED</span>
+          <p className="text-sm text-emerald-100/90 max-w-2xl leading-relaxed">
+            AI-powered smart water & data quality management for modern cloud infrastructures. Validate streams, eliminate redundancies, and guarantee zero-duplicate storage.
+          </p>
+
+          {/* AquaSmart Floating Stats Bar */}
+          <div className="pt-2">
+            <div className="bg-white/95 backdrop-blur-md border border-slate-200 rounded-2xl p-2 shadow-lg max-w-2xl text-slate-800 grid grid-cols-3 divide-x divide-slate-200 text-center">
+              <div className="px-4 py-2">
+                <span className="text-xl font-extrabold text-[#15803d] font-mono block">{stats?.totalRecords ?? '12.4K'}</span>
+                <span className="text-[11px] text-slate-500 font-medium">Stored Records</span>
+              </div>
+              <div className="px-4 py-2">
+                <span className="text-xl font-extrabold text-[#16a34a] font-mono block">{stats?.dataQualityScore ?? '99.8'}%</span>
+                <span className="text-[11px] text-slate-500 font-medium">Data Quality Score</span>
+              </div>
+              <div className="px-4 py-2">
+                <span className="text-xl font-extrabold text-[#047857] font-mono block">{stats?.redundantAttempts ?? '0'}</span>
+                <span className="text-[11px] text-slate-500 font-medium">Redundant Blocked</span>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Floating Validation Action Card */}
-        <div className="bg-white text-slate-900 rounded-2xl shadow-xl p-4 sm:p-5 flex flex-col lg:flex-row items-center justify-between gap-4 border border-blue-100">
+        {/* Floating Action Card */}
+        <div className="bg-white text-slate-900 rounded-2xl shadow-xl p-4 sm:p-5 flex flex-col lg:flex-row items-center justify-between gap-4 border border-slate-200">
           <div className="text-base font-extrabold text-slate-900 tracking-tight whitespace-nowrap lg:border-r border-slate-200 pr-4">
-            Validate cloud record<span className="text-[#0052cc]">.</span>
+            Validate cloud payload<span className="text-[#16a34a]">.</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center gap-3 w-full lg:w-auto flex-1">
-            {/* Input / Dropdown 1 */}
             <div className="relative w-full">
-              <select className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 appearance-none focus:outline-none focus:border-[#0052cc] cursor-pointer">
+              <select className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 appearance-none focus:outline-none focus:border-[#16a34a] cursor-pointer">
                 <option value="Engineering">Engineering Department</option>
                 <option value="Cloud Security">Cloud Security</option>
                 <option value="Data Ops">Data Ops</option>
@@ -59,9 +72,8 @@ export default function HeroBuiltIn({ onNavigate, stats }) {
               <ChevronDown className="w-4 h-4 text-slate-400 absolute right-3 top-3.5 pointer-events-none" />
             </div>
 
-            {/* Dropdown 2 */}
             <div className="relative w-full">
-              <select className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 appearance-none focus:outline-none focus:border-[#0052cc] cursor-pointer">
+              <select className="w-full px-4 py-3 rounded-xl bg-slate-50 border border-slate-200 text-xs font-semibold text-slate-800 appearance-none focus:outline-none focus:border-[#16a34a] cursor-pointer">
                 <option value="strict">Full 3-Level Deduplication</option>
                 <option value="email">Strict Email Matching</option>
                 <option value="phone">Strict Phone Matching</option>
@@ -70,40 +82,39 @@ export default function HeroBuiltIn({ onNavigate, stats }) {
             </div>
           </div>
 
-          {/* Primary Action Button */}
           <button
             onClick={() => onNavigate('validation')}
-            className="w-full lg:w-auto px-6 py-3.5 rounded-xl bg-[#0052cc] hover:bg-[#0047b3] text-white font-extrabold text-xs tracking-wider uppercase transition shadow-md whitespace-nowrap flex items-center justify-center space-x-2"
+            className="w-full lg:w-auto px-6 py-3.5 rounded-xl bg-gradient-to-r from-[#16a34a] to-[#059669] hover:from-[#15803d] hover:to-[#047857] text-white font-extrabold text-xs tracking-wider uppercase transition shadow-[0_6px_20px_rgba(22,163,74,0.3)] hover:scale-105 whitespace-nowrap flex items-center justify-center space-x-2"
           >
-            <span>VALIDATE DATA RECORD</span>
+            <span>LAUNCH AI ENGINE</span>
             <ArrowRight className="w-4 h-4" />
           </button>
         </div>
 
-        {/* Feature Pill Links Below Hero */}
-        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-6 text-xs font-bold pt-2 border-t border-blue-400/20">
+        {/* Feature Links Below Hero */}
+        <div className="flex flex-wrap items-center justify-center sm:justify-start gap-6 text-xs font-bold pt-2 border-t border-emerald-400/20">
           <button 
             onClick={() => onNavigate('records')}
-            className="flex items-center space-x-2 text-white hover:text-blue-100 underline decoration-blue-200 underline-offset-4 transition"
+            className="flex items-center space-x-2 text-white hover:text-emerald-200 underline decoration-[#86efac] underline-offset-4 transition"
           >
-            <Database className="w-4 h-4 text-blue-200" />
+            <Database className="w-4 h-4 text-[#86efac]" />
             <span>Match With Existing Records</span>
           </button>
 
           <button 
             onClick={() => onNavigate('analytics')}
-            className="flex items-center space-x-2 text-white hover:text-blue-100 underline decoration-blue-200 underline-offset-4 transition"
+            className="flex items-center space-x-2 text-white hover:text-emerald-200 underline decoration-[#86efac] underline-offset-4 transition"
           >
-            <FileText className="w-4 h-4 text-emerald-300" />
-            <span>Read Data Quality Reports</span>
+            <FileText className="w-4 h-4 text-[#4ade80]" />
+            <span>Read AI Quality Reports</span>
           </button>
 
           <button 
             onClick={() => onNavigate('logs')}
-            className="flex items-center space-x-2 text-white hover:text-blue-100 underline decoration-blue-200 underline-offset-4 transition"
+            className="flex items-center space-x-2 text-white hover:text-emerald-200 underline decoration-[#86efac] underline-offset-4 transition"
           >
-            <Zap className="w-4 h-4 text-sky-300" />
-            <span>Receive Real-Time Collision Alerts</span>
+            <Zap className="w-4 h-4 text-[#86efac]" />
+            <span>Receive Telemetry Alerts</span>
           </button>
         </div>
       </div>

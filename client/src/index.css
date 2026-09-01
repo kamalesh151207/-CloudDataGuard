@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme: Enterprise Royal Blue & Pure White (Default) */
+/* Theme: AquaSmart AI Green/Emerald (Default - Inspired by AquaSmart AI) */
+.theme-aquasmart {
+  --bg-primary: #f9fafb;
+  --bg-secondary: #052e16;
+  --bg-card: #ffffff;
+  --border-color: #e5e7eb;
+  --text-main: #111827;
+  --text-muted: #6b7280;
+  --accent-primary: #16a34a; /* Green 600 */
+  --accent-secondary: #059669; /* Emerald 600 */
+}
 .theme-bluewhite {
   --bg-primary: #f0f4f9;
   --bg-secondary: #0b2545;

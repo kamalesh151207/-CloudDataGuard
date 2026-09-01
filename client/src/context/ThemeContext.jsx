@@ -5,15 +5,15 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('cloud_dataguard_theme');
-    return saved || 'bluewhite';
+    return saved || 'aquasmart';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('theme-bluewhite', 'theme-[#0052cc]', 'theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
+    root.classList.remove('theme-aquasmart', 'theme-bluewhite', 'theme-[#0052cc]', 'theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
 
-    if (theme === 'bluewhite' || theme === 'builtin') {
-      root.classList.add('theme-bluewhite', 'light');
+    if (theme === 'aquasmart' || theme === 'bluewhite' || theme === 'builtin') {
+      root.classList.add('theme-aquasmart', 'light');
     } else if (theme === 'cyberpunk') {
       root.classList.add('theme-cyberpunk', 'dark');
     } else if (theme === 'navy') {
