@@ -2,7 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Theme: Vibrant Cyberpunk / Neon Synthwave (Default) */
+/* Theme: Enterprise Royal Blue & Pure White (Default) */
+.theme-bluewhite {
+  --bg-primary: #f0f4f9;
+  --bg-secondary: #0b2545;
+  --bg-card: #ffffff;
+  --border-color: #dbebe6;
+  --text-main: #0a192f;
+  --text-muted: #475569;
+  --accent-primary: #0052cc;
+  --accent-secondary: #0077e6;
+}
 .theme-cyberpunk {
   --bg-primary: #030008;
   --bg-secondary: #0a0218;

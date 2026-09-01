@@ -5,17 +5,17 @@ const ThemeContext = createContext();
 export const ThemeProvider = ({ children }) => {
   const [theme, setTheme] = useState(() => {
     const saved = localStorage.getItem('cloud_dataguard_theme');
-    return saved || 'cyberpunk';
+    return saved || 'bluewhite';
   });
 
   useEffect(() => {
     const root = document.documentElement;
-    root.classList.remove('theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
+    root.classList.remove('theme-bluewhite', 'theme-[#0052cc]', 'theme-cyberpunk', 'theme-builtin', 'theme-cyber', 'theme-navy', 'theme-light', 'dark', 'light');
 
-    if (theme === 'cyberpunk') {
+    if (theme === 'bluewhite' || theme === 'builtin') {
+      root.classList.add('theme-bluewhite', 'light');
+    } else if (theme === 'cyberpunk') {
       root.classList.add('theme-cyberpunk', 'dark');
-    } else if (theme === 'builtin') {
-      root.classList.add('theme-builtin', 'light');
     } else if (theme === 'navy') {
       root.classList.add('theme-navy', 'dark');
     } else {
