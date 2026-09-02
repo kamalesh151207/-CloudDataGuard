@@ -289,17 +289,17 @@ export default function DataValidation({ onRecordSaved }) {
               {saveSuccess ? (
                 <div className="p-4 rounded-xl bg-emerald-600 text-white text-xs font-bold text-center flex items-center justify-center space-x-2 shadow-md">
                   <Database className="w-4 h-4" />
-                  <span>Unique record successfully stored in MongoDB Atlas!</span>
+                  <span>Unique record successfully stored in Supabase PostgreSQL!</span>
                 </div>
               ) : (
                 <div className="flex space-x-3">
                   <button
                     onClick={handleSaveRecord}
                     disabled={saving}
-                    className="flex-1 py-3 rounded-xl bg-emerald-600 hover:bg-emerald-500 text-white font-extrabold text-xs shadow-md transition flex items-center justify-center space-x-2"
+                    className="flex-1 py-3 rounded-xl bg-[#2563eb] hover:bg-[#1d4ed8] text-white font-extrabold text-xs shadow-md transition flex items-center justify-center space-x-2"
                   >
                     <Save className="w-4 h-4" />
-                    <span>{saving ? 'Inserting to MongoDB...' : 'Save Record'}</span>
+                    <span>{saving ? 'Storing to Supabase...' : 'Save Record'}</span>
                   </button>
 
                   <button

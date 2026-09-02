@@ -1,5 +1,31 @@
 [
   {
+    "_id": "LOG-1788322774306-93",
+    "eventType": "UNIQUE_RECORD_INSERTED",
+    "status": "verified",
+    "description": "Unique record successfully stored for Aswanth (aswanthss663@gmail.com).",
+    "metadata": {
+      "recordId": "REC-1788322774302-610",
+      "email": "aswanthss663@gmail.com",
+      "phone": "9378600213",
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-02T04:19:34.306Z"
+  },
+  {
+    "_id": "LOG-1788322772353-441",
+    "eventType": "RECORD_VALIDATED",
+    "status": "unique",
+    "description": "Validation performed for aswanthss663@gmail.com: Record is UNIQUE & VERIFIED.",
+    "metadata": {
+      "email": "aswanthss663@gmail.com",
+      "phone": "9378600213",
+      "reason": "Data passed schema validation and contains no cloud database redundancies.",
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-02T04:19:32.353Z"
+  },
+  {
     "_id": "LOG-1788322544119-921",
     "eventType": "UNIQUE_RECORD_INSERTED",
     "status": "verified",
