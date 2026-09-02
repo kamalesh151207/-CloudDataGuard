@@ -1,0 +1,58 @@
+[
+  {
+    "_id": "REC-1788322544114-950",
+    "recordId": "REC-1788322544114-476",
+    "name": "Kamalesh Dev",
+    "email": "kamalesh.dev@clouddataguard.io",
+    "normalizedEmail": "kamalesh.dev@clouddataguard.io",
+    "phone": "+1 (555) 998-1122",
+    "normalizedPhone": "5559981122",
+    "department": "Cloud Security",
+    "location": "Remote",
+    "status": "verified",
+    "createdAt": "2026-09-02T04:15:44.114Z",
+    "updatedAt": "2026-09-02T04:15:44.114Z"
+  },
+  {
+    "_id": "REC-1788322530758-568",
+    "recordId": "REC-1788322530758-745",
+    "name": "Elena Rostova",
+    "email": "elena.rostova@cloudguard.tech",
+    "normalizedEmail": "elena.rostova@cloudguard.tech",
+    "phone": "+1 (555) 014-4412",
+    "normalizedPhone": "15550144412",
+    "department": "Data Ops",
+    "location": "Seattle, WA",
+    "status": "verified",
+    "createdAt": "2026-09-02T04:15:30.758Z",
+    "updatedAt": "2026-09-02T04:15:30.758Z"
+  },
+  {
+    "_id": "REC-1788322530757-871",
+    "recordId": "REC-1788322530757-149",
+    "name": "Marcus Wright",
+    "email": "marcus.w@resistance.org",
+    "normalizedEmail": "marcus.w@resistance.org",
+    "phone": "+1 (555) 018-9921",
+    "normalizedPhone": "15550189921",
+    "department": "Engineering",
+    "location": "Austin, TX",
+    "status": "verified",
+    "createdAt": "2026-09-02T04:15:30.757Z",
+    "updatedAt": "2026-09-02T04:15:30.757Z"
+  },
+  {
+    "_id": "REC-1788322530756-439",
+    "recordId": "REC-1788322530756-994",
+    "name": "Sarah Connor",
+    "email": "sarah.connor@cyberdyne.io",
+    "normalizedEmail": "sarah.connor@cyberdyne.io",
+    "phone": "+1 (555) 019-2834",
+    "normalizedPhone": "15550192834",
+    "department": "Cloud Security",
+    "location": "San Francisco, CA",
+    "status": "verified",
+    "createdAt": "2026-09-02T04:15:30.756Z",
+    "updatedAt": "2026-09-02T04:15:30.757Z"
+  }
+]

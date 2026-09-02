@@ -10,6 +10,9 @@
     "seed": "node scripts/seed.js",
     "test": "jest --runInBand --detectOpenHandles --forceExit"
   },
+  "nodemonConfig": {
+    "ignore": ["data/*"]
+  },
   "dependencies": {
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",

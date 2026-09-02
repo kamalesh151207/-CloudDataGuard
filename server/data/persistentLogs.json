@@ -1,0 +1,23 @@
+[
+  {
+    "_id": "LOG-1788322544119-921",
+    "eventType": "UNIQUE_RECORD_INSERTED",
+    "status": "verified",
+    "description": "Unique record successfully stored for Kamalesh Dev (kamalesh.dev@clouddataguard.io).",
+    "metadata": {
+      "recordId": "REC-1788322544114-950",
+      "email": "kamalesh.dev@clouddataguard.io",
+      "phone": "+1 (555) 998-1122",
+      "ip": "::1"
+    },
+    "timestamp": "2026-09-02T04:15:44.119Z"
+  },
+  {
+    "_id": "LOG-1788322530758-32",
+    "eventType": "UNIQUE_RECORD_INSERTED",
+    "status": "verified",
+    "description": "Seed records successfully initialized in persistent disk store.",
+    "metadata": {},
+    "timestamp": "2026-09-02T04:15:30.758Z"
+  }
+]
